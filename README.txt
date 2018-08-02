@@ -6,4 +6,5 @@ git remote add origin git@github.com:hisayuki-mashimo/radar_server.git
 git add Gemfile
 vi Gemfile
 bundle install --path vender
+bundle exec rails new . -d mysql  --skip-action-cable --skip-turbolinks --skip-test --skip-system-test --skip-action-cable
 
