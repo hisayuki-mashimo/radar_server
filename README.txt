@@ -7,4 +7,12 @@ git add Gemfile
 vi Gemfile
 bundle install --path vender
 bundle exec rails new . -d mysql  --skip-action-cable --skip-turbolinks --skip-test --skip-system-test --skip-action-cable
-
+bundle install
+> rbenv: bundle: command not found
+> 
+> The `bundle' command exists in these Ruby versions:
+>   2.4.1
+>   2.5.0
+gem install bundle --path vendor
+bundle exec rails generate controller api
+bundle exec rake db:create
