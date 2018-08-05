@@ -1,0 +1,2 @@
+class MasterParameterType < ApplicationRecord
+end

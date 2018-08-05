@@ -1,0 +1,17 @@
+<%= link_to '&laquo;&nbsp;前'.html_safe, page: @page - 1 %>
+<%= link_to '次&nbsp;&raquo;'.html_safe, page: @page + 1 %>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>苗字</th>
+        <th>名前</th>
+    </tr>
+    <% @users.each do | user | %>
+    <tr>
+    <td><%= user.id %></td>
+    <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+    </tr>
+    <% end %>
+</table>
