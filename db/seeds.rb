@@ -47,4 +47,6 @@ UserParameter.create([
     { :user_id => 2, :parameter_id => 2, :parameter => 58 },
     { :user_id => 2, :parameter_id => 3, :parameter => 41 },
     { :user_id => 2, :parameter_id => 4, :parameter => 39 },
+    { :user_id => 2, :parameter_id => 5, :parameter => 83 },
+    { :user_id => 2, :parameter_id => 6, :parameter => 27 },
 ])

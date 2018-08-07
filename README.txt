@@ -24,5 +24,6 @@ bundle exec rake db:environment:set RAILS_ENV=development
 bundle exec rake db:migrate:reset
 bundle exec rake db:migrate
 bundle exec rake db:seed
+bundle exec rails db:reset
 
 

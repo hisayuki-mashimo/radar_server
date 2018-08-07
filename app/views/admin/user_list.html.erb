@@ -6,12 +6,18 @@
         <th>ID</th>
         <th>苗字</th>
         <th>名前</th>
+        <% @parameters.each do | parameter | %>
+        <th><%= parameter.label %></th>
+        <% end %>
     </tr>
-    <% @users.each do | user | %>
+    <% @user_infos.each do | user_info | %>
     <tr>
-    <td><%= user.id %></td>
-    <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
+        <td><%= user_info[:embody].id %></td>
+        <td><%= user_info[:embody].first_name %></td>
+        <td><%= user_info[:embody].last_name %></td>
+        <% user_info[:parameters].each do | user_parameter | %>
+        <td><%= user_parameter.parameter %></td>
+        <% end %>
     </tr>
     <% end %>
 </table>
