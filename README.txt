@@ -25,5 +25,6 @@ bundle exec rake db:migrate:reset
 bundle exec rake db:migrate
 bundle exec rake db:seed
 bundle exec rails db:reset
-
+bundle exec rake routes
+	https://qiita.com/blueplanet/items/522cc8364f6cf189ecad
 

@@ -7,6 +7,6 @@ class User < ApplicationRecord
         parameters.each do | paramster |
             parameter_ids.push(paramster.id)
         end
-        self::parameters.where(user_id: id).where(parameter_id: parameter_ids)
+        self::parameters.where(parameter_id: parameter_ids)
     end
 end
