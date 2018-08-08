@@ -8,7 +8,6 @@ class ApiController < ApplicationController
       @parameters.push(user_parameter.parameter)
     end
 
-    p @parameters
     respond_to do | format |
       format.json { render json: @parameters }
     end
@@ -25,62 +24,57 @@ class ApiController < ApplicationController
     hash_1 = Digest::MD5.new.update(first_name + '=' + last_name).to_s
     hash_2 = Digest::MD5.new.update(last_name + '=' + first_name).to_s
     hash = hash_1 + hash_2
-    stings = hash.split ""
+    strings = hash.split ""
 
-    user_parameters = []
+    @user_parameters = []
 
-    parameters.each_with_index do | i, parameter |
-      let integer = 1;
+    parameters.each_with_index do | parameter, i |
+      integer = 1
 
       [0, 1].each do | j |
         n = (i * 2) + j
+        string = strings[n]
+        unit_integer = 0
 
-        =begin
-        switch (j) {
-          case 0:
-            switch (true) {
-              case (strings[n].match(/[0-9]/) !== null): var unit_integer = parseInt(strings[n]); break;
-              case (strings[n].match(/[a-b]/) !== null): var unit_integer = 0; break; // weight: 2
-              case (strings[n].match(/[c-d]/) !== null): var unit_integer = 1; break; // weight: 2
-              case (strings[n].match(/[e-g]/) !== null): var unit_integer = 2; break; // weight: 3
-              case (strings[n].match(/[h-j]/) !== null): var unit_integer = 3; break; // weight: 3
-              case (strings[n].match(/[k-m]/) !== null): var unit_integer = 4; break; // weight: 3
-              case (strings[n].match(/[n-p]/) !== null): var unit_integer = 5; break; // weight: 3
-              case (strings[n].match(/[q-s]/) !== null): var unit_integer = 6; break; // weight: 3
-              case (strings[n].match(/[t-v]/) !== null): var unit_integer = 7; break; // weight: 3
-              case (strings[n].match(/[w-x]/) !== null): var unit_integer = 8; break; // weight: 2
-              case (strings[n].match(/[y-z]/) !== null): var unit_integer = 9; break; // weight: 2
-            }
-    
-            var coefficient = 1;
-            break;
-    
-          case 1:
-            switch (true) {
-              case (strings[n].match(/[0-9]/) !== null): var unit_integer = parseInt(strings[n]); break;
-              case (strings[n].match(/a/) !== null): var unit_integer = 0; break; // weight: 1
-              case (strings[n].match(/b/) !== null): var unit_integer = 1; break; // weight: 1
-              case (strings[n].match(/[c-d]/) !== null): var unit_integer = 2; break; // weight: 2
-              case (strings[n].match(/[e-h]/) !== null): var unit_integer = 3; break; // weight: 4
-              case (strings[n].match(/[i-m]/) !== null): var unit_integer = 4; break; // weight: 5
-              case (strings[n].match(/[n-r]/) !== null): var unit_integer = 5; break; // weight: 5
-              case (strings[n].match(/[s-v]/) !== null): var unit_integer = 6; break; // weight: 4
-              case (strings[n].match(/[w-x]/) !== null): var unit_integer = 7; break; // weight: 2
-              case (strings[n].match(/y/) !== null): var unit_integer = 8; break; // weight: 1
-              case (strings[n].match(/z/) !== null): var unit_integer = 9; break; // weight: 1
-            }
-    
-            var coefficient = 10;
-            break;
-        }
-        =end
-  
-        integer += unit_integer * coefficient;
+        case j
+          when 0 then
+            case true
+              when string.match(/[0-9]/) != nil then unit_integer = string.to_i
+              when string.match(/[a-b]/) != nil then unit_integer = 0 # weight: 2
+              when string.match(/[c-d]/) != nil then unit_integer = 1 # weight: 2
+              when string.match(/[e-g]/) != nil then unit_integer = 2 # weight: 3
+              when string.match(/[h-j]/) != nil then unit_integer = 3 # weight: 3
+              when string.match(/[k-m]/) != nil then unit_integer = 4 # weight: 3
+              when string.match(/[n-p]/) != nil then unit_integer = 5 # weight: 3
+              when string.match(/[q-s]/) != nil then unit_integer = 6 # weight: 3
+              when string.match(/[t-v]/) != nil then unit_integer = 7 # weight: 3
+              when string.match(/[w-x]/) != nil then unit_integer = 8 # weight: 2
+              when string.match(/[y-z]/) != nil then unit_integer = 9 # weight: 2
+            end
+            integer += unit_integer
+          when 1 then
+            case true
+              when string.match(/[0-9]/) != nil then unit_integer = string.to_i
+              when string.match(/a/) != nil then unit_integer = 0 # weight: 1
+              when string.match(/b/) != nil then unit_integer = 1 # weight: 1
+              when string.match(/[c-d]/) != nil then unit_integer = 2 # weight: 2
+              when string.match(/[e-h]/) != nil then unit_integer = 3 # weight: 4
+              when string.match(/[i-m]/) != nil then unit_integer = 4 # weight: 5
+              when string.match(/[n-r]/) != nil then unit_integer = 5 # weight: 5
+              when string.match(/[s-v]/) != nil then unit_integer = 6 # weight: 4
+              when string.match(/[w-x]/) != nil then unit_integer = 7 # weight: 2
+              when string.match(/y/) != nil then unit_integer = 8 # weight: 1
+              when string.match(/z/) != nil then unit_integer = 9 # weight: 1
+            end
+            integer += unit_integer * 10
+        end
       end
     
-      parameters[i] = integer;
+      @user_parameters.push(integer)
     end
-    
-    user_parameters
+
+    respond_to do | format |
+      format.json { render json: @user_parameters }
+    end
   end
 end
