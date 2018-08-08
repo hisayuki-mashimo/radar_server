@@ -29,5 +29,11 @@ module RadarServer
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Credentials' => 'true',
+      'Access-Control-Allow-Origin' => 'http://localhost:9090',
+      'Access-Control-Request-Method' => '*'
+    }
   end
 end
