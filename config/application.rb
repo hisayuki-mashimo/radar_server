@@ -32,8 +32,12 @@ module RadarServer
 
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Credentials' => 'true',
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Request-Method' => '*'
+      'Access-Control-Allow-Origin' => 'http://localhost:9090',
+      #'Access-Control-Request-Method' => '*'
+      'Access-Control-Allow-Methods' => 'GET,POST,HEAD,OPTIONS',
+      #Access-Control-Allow-Headers: X-MyRequest
+      'Access-Control-Allow-Headers' => 'x-requested-with'
+      #Access-Control-Expose-Headers: X-MyResponse
     }
   end
 end

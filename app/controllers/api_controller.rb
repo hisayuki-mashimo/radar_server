@@ -1,5 +1,10 @@
 class ApiController < ApplicationController
   protect_from_forgery except: :get_parameter
+  skip_before_action :verify_authenticity_token, if: :json_request?
+
+  def params
+    @params ||= JSON.parse(request.body.read, {:symbolize_names => true})
+  end
 
   def get_user
     user = User.find(params[:user_id].to_i)
@@ -18,12 +23,11 @@ class ApiController < ApplicationController
   def get_parameter
     require 'digest/md5'
 
-    p params
-    parameter_type = MasterParameterType.find(params[:parameter_type_id].to_i)
+    parameter_type_id = params[:parameter_type_id] ? params[:parameter_type_id].to_i : 1
+    parameter_type = MasterParameterType.find(parameter_type_id)
     parameters = parameter_type.getParameters
     first_name = params[:first_name].to_s
     last_name = params[:last_name].to_s
-    p first_name + " : " + last_name
 
     hash_1 = Digest::MD5.new.update(first_name + '=' + last_name).to_s
     hash_2 = Digest::MD5.new.update(last_name + '=' + first_name).to_s
@@ -76,7 +80,6 @@ class ApiController < ApplicationController
     
       @user_parameters.push(integer)
     end
-    p @user_parameters
 
     respond_to do | format |
       format.json { render json: @user_parameters }
