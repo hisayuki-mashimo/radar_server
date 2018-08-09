@@ -8,6 +8,9 @@
 MasterParameterType.create([
     { :label => '性格傾向' },
     { :label => '運勢' },
+    { :label => '教科' },
+    { :label => '適正能力' },
+    { :label => '耐性能力' }
 ])
 
 
@@ -21,7 +24,47 @@ MasterParameter.create([
     { :type_id => 2, :label => '天運' },
     { :type_id => 2, :label => '健康運' },
     { :type_id => 2, :label => '金運' },
-    { :type_id => 2, :label => '勝負運' }
+    { :type_id => 2, :label => '勝負運' },
+    { :type_id => 3, :label => '国語' },
+    { :type_id => 3, :label => '数学' },
+    { :type_id => 3, :label => '理科' },
+    { :type_id => 3, :label => '社会' },
+    { :type_id => 3, :label => '体育' },
+    { :type_id => 3, :label => '音楽' },
+    { :type_id => 3, :label => '美術' },
+    { :type_id => 3, :label => '外語' },
+    { :type_id => 4, :label => '体力' },
+    { :type_id => 4, :label => '攻撃' },
+    { :type_id => 4, :label => '防御' },
+    { :type_id => 4, :label => '知力' },
+    { :type_id => 4, :label => '魔力' },
+    { :type_id => 4, :label => '指揮' },
+    { :type_id => 4, :label => '話術' },
+    { :type_id => 4, :label => '操縦' },
+    { :type_id => 4, :label => '変装' },
+    { :type_id => 4, :label => '料理' },
+    { :type_id => 4, :label => '品位' },
+    { :type_id => 4, :label => '理力' },
+    { :type_id => 4, :label => '感性' },
+    { :type_id => 4, :label => '人徳' },
+    { :type_id => 4, :label => '技術' },
+    { :type_id => 4, :label => '包容' },
+    { :type_id => 4, :label => '直感' },
+    { :type_id => 4, :label => '視力' },
+    { :type_id => 4, :label => '霊感' },
+    { :type_id => 4, :label => '芸術' },
+    { :type_id => 5, :label => '耐暑' },
+    { :type_id => 5, :label => '耐寒' },
+    { :type_id => 5, :label => '耐魔' },
+    { :type_id => 5, :label => '耐獣' },
+    { :type_id => 5, :label => '耐風' },
+    { :type_id => 5, :label => '耐水' },
+    { :type_id => 5, :label => '耐火' },
+    { :type_id => 5, :label => '耐Ｇ' },
+    { :type_id => 5, :label => '耐菌' },
+    { :type_id => 5, :label => '耐毒' },
+    { :type_id => 5, :label => '耐光' },
+    { :type_id => 5, :label => '耐闇' },
 ])
 
 users = User.create([

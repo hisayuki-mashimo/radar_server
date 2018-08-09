@@ -23,7 +23,8 @@ class ApiController < ApplicationController
   def get_parameter
     require 'digest/md5'
 
-    parameter_type_id = params[:parameter_type_id] ? params[:parameter_type_id].to_i : 1
+    parameter_type_code = params[:parameter_type] ? params[:parameter_type].to_i : 1
+    parameter_type_id = _get_parameter_id parameter_type_code
     parameter_type = MasterParameterType.find(parameter_type_id)
     parameters = parameter_type.getParameters
     first_name = params[:first_name].to_s
@@ -84,5 +85,15 @@ class ApiController < ApplicationController
     respond_to do | format |
       format.json { render json: @user_parameters }
     end
+  end
+
+  def _get_parameter_id (parameter_type_code)
+    case parameter_type_code
+      when 4 then 2
+      when 6 then 3
+      when 8 then 1
+      when 12 then 4
+      when 20 then 5
+      end
   end
 end
